@@ -20,7 +20,7 @@
                     <button
                         class="btn btn-success"
                         @click="buyStock"
-                        :disabled="quantity <= 0 || !Number.isInteger(quantity)"
+                        :disabled="quantity <= 0 || !Number.isInteger(quantity) || (stock.price * quantity) > funds"
                         >Buy</button>
                 </div>
             </div>
@@ -48,6 +48,11 @@
 
                this.$store.dispatch('buyStock', order);
                this.quantity = 0;
+           }
+       },
+       computed: {
+           funds() {
+               return this.$store.getters.funds;
            }
        }
     }
