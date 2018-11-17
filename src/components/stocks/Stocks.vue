@@ -6,10 +6,16 @@
 
 <script>
     import Stock from './Stock.vue';
+    import { mapGetters } from 'vuex';
 
     export default {
         components: {
             appStock: Stock
+        },
+        computed: {
+            ...mapGetters([
+                'stocks'
+            ])
         }
     }
 </script>
